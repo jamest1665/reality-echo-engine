@@ -17,18 +17,14 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install backend deps
-        working-directory: ./backend
-        run: pip install -r requirements.txt
-
-      - name: Run backend tests
+      - name: Install backend deps & Run tests
         working-directory: ./backend
         run: |
           pip install -r requirements.txt
-          PYTHONPATH=. pytest -q --import-mode=importlib
+          PYTHONPATH=. python -m pytest tests -q --import-mode=importlib
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-python@v4
         with:
           node-version: 20
           cache: 'npm'
