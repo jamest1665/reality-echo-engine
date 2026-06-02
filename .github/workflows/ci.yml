@@ -23,7 +23,9 @@ jobs:
 
       - name: Run backend tests
         working-directory: ./backend
-        run: pytest
+        run: |
+          pip install -r requirements.txt
+          PYTHONPATH=. pytest -q --import-mode=importlib
 
       - name: Set up Node
         uses: actions/setup-node@v4
